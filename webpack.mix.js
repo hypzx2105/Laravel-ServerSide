@@ -1,20 +1,12 @@
 const mix = require('laravel-mix');
 
-
-mix
-    .js('resources/js/app.js', 'public/js')
-    .sass('resources/scss/app.scss', 'public/css', {
-        sassOptions: {
-            outputStyle: 'compressed'
-        }
-    })
+mix.js("resources/js/app.js", "public/js")
+    .sass("resources/scss/app.scss", "public/css")
+    .postCss("resources/css/app.css", "public/css", [
+        require("tailwindcss"),
+    ])
     .options({
-        postCss: [
-            require('postcss-import'),
-            require('tailwindcss'),
-            require('postcss-nested'),
-            require('autoprefixer'),
-        ]
+        processCssUrls: false,
     });
 
 if (mix.inProduction()) {
