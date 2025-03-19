@@ -6,8 +6,27 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    public function index()
+    // Home Page
+    public function home()
     {
-        return view('index');
+        return view('layouts.home');
+    }
+
+    // Destinations Page
+    public function destinations()
+    {
+        return view('layouts.destinations');
+    }
+
+    // Contact Page
+    public function contact()
+    {
+        return view('layouts.contact');
+    }
+
+    // Google Maps Page
+    public function map()
+    {
+        return view('layouts.map');
     }
 }
