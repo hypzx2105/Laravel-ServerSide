@@ -9,31 +9,22 @@ use App\Http\Controllers\PostsController;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| This file defines the routes for your Laravel application.
 |
 */
 
-Route::get('/', [PagesController::class, 'index']);
+// Homepage Route
+Route::get('/', [PagesController::class, 'home'])->name('home');
 
-Route::resource('/blog', PostsController::class);
+// Blog Routes
+Route::get('/blog', [PostsController::class, 'index'])->name('blog.index'); // Show all posts
+Route::get('/blog/{id}', [PostsController::class, 'show'])->name('blog.show'); // Show a single post
 
-Auth::routes();
+// Destinations Page
+Route::get('/destinations', [PagesController::class, 'destinations'])->name('destinations');
 
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Contact Page
+Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
 
-Auth::routes();
-
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/destinations', function () {
-    return view('layouts.destinations');
-})->name('destinations');
-
-Route::get('/contact', function () {
-    return view('layouts.contact');
-})->name('contact');
-
-
-
+// Google Maps Feature
+Route::get('/map', [PagesController::class, 'map'])->name('map');
