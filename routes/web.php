@@ -27,3 +27,13 @@ Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/destinations', function () {
+    return view('layouts.destinations');
+})->name('destinations');
+
+Route::get('/contact', function () {
+    return view('layouts.contact');
+})->name('contact');
+
+
+

@@ -12,17 +12,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextBtn = document.getElementById("nextBtn");
 
     function updateSlider() {
-        if (slider) {
-            slider.style.backgroundImage = `url('${images[currentIndex]}')`;
-        }
+        slider.style.backgroundImage = `url(${images[currentIndex]})`;
     }
 
-    prevBtn?.addEventListener("click", () => {
+    prevBtn.addEventListener("click", () => {
         currentIndex = (currentIndex - 1 + images.length) % images.length;
         updateSlider();
     });
 
-    nextBtn?.addEventListener("click", () => {
+    nextBtn.addEventListener("click", () => {
         currentIndex = (currentIndex + 1) % images.length;
         updateSlider();
     });

@@ -1,67 +1,99 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-/* General Styling */
+/* General Styles */
 body {
-    @apply bg-gray-100 font-sans;
-}
-
-/* Slider Container */
-.slider-container {
-    @apply relative w-full max-w-4xl mx-auto mt-24;
-    height: 500px;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-/* Image Slider */
-#imageSlider {
-    @apply w-full h-full bg-cover bg-center transition-all duration-1000 ease-in-out;
-    position: relative;
-}
-
-/* Navigation Buttons */
-.slider-btn {
-    @apply absolute top-1/2 transform -translate-y-1/2 bg-gray-900 text-white text-2xl px-4 py-2 rounded-full shadow-md cursor-pointer transition hover:bg-gray-700;
-    z-index: 10; /* Ensure buttons appear above slider */
-}
-
-#prevBtn {
-    @apply left-6;
-}
-
-#nextBtn {
-    @apply right-6;
+    font-family: "Lato", sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
 }
 
 /* Navbar */
-nav {
-    @apply bg-white shadow-md fixed w-full top-0 z-20 p-4;
+.navbar {
+    background: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-nav .container {
-    @apply flex justify-between items-center max-w-6xl mx-auto;
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff6f61;
 }
 
-nav h1 {
-    @apply text-2xl font-bold text-gray-900;
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
 }
 
-nav ul {
-    @apply flex space-x-6;
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
 }
 
-nav ul li a {
-    @apply text-gray-700 hover:text-orange-600 transition;
+.nav-links li a:hover {
+    color: #ff6f61;
 }
 
 /* Hero Section */
-.hero-text {
-    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white;
+.hero {
+    background: url('/images/panama1.jpg') no-repeat center center/cover;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
 }
 
-.hero-text h1 {
-    @apply text-5xl font-bold drop-shadow-lg;
+.hero h1 {
+    font-size: 4rem;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Grid Section */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 80%;
+    margin: 2rem auto;
+}
+
+.grid-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.grid-item:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .grid-container {
+        width: 90%;
+    }
 }
