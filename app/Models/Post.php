@@ -4,26 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
     use HasFactory;
-    use Sluggable;
 
-    protected $fillable = ['title', 'slug', 'description', 'image_path', 'user_id'];
+    // Specify table name if different from the default ('posts')
+    protected $table = 'posts';
 
-    public function user()
+    // Allow mass assignment for these fields
+    protected $fillable = [
+        'title',
+        'description',
+        'image_path'
+    ];
+
+    /**
+     * Get the full URL of the image.
+     */
+    public function getImageUrlAttribute()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
+        return $this->image_path ? asset('images/' . $this->image_path) : asset('images/default.jpg');
     }
 }
