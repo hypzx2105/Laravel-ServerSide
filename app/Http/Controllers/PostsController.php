@@ -12,11 +12,12 @@ class PostsController extends Controller
      * Display all tourism destinations.
      */
     public function index()
-    {
-        $posts = Post::orderBy('updated_at', 'DESC')->get();
-        return view('blog.index', compact('posts'));
-    }
-    
+{
+    $posts = Post::latest()->paginate(6); // Fetch latest posts, 6 per page
+    return view('blog.index', compact('posts'));
+}
+
+
 
     /**
      * Show form to create a new tourism post.

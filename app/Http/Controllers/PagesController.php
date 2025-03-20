@@ -26,9 +26,15 @@ class PagesController extends Controller
         return view('layouts.contact');
     }
 
-    // Google Maps Page
+    // Google Maps Page - Now properly passes locations
     public function map()
     {
-        return view('layouts.map');
+        $locations = [
+            ['lat' => 9.1012, 'lng' => -79.6958, 'title' => 'Panama Canal', 'url' => 'https://goo.gl/maps/qv5FmE'],
+            ['lat' => 9.5775, 'lng' => -78.8282, 'title' => 'San Blas Islands', 'url' => 'https://goo.gl/maps/VvW1cY'],
+            ['lat' => 9.3406, 'lng' => -82.2432, 'title' => 'Bocas del Toro', 'url' => 'https://goo.gl/maps/yZG8pH']
+        ];
+
+        return view('layouts.map', compact('locations'));
     }
 }
