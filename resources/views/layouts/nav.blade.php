@@ -1,12 +1,11 @@
-<nav class="bg-white shadow-md p-4">
-    <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-red-500">Tourism Panama</h1>
-        <ul class="flex space-x-6">
-            <li><a href="{{ route('home') }}" class="hover:text-red-500">Home</a></li>
-            <li><a href="{{ route('destinations') }}" class="hover:text-red-500">Destinations</a></li>
-            <li><a href="{{ route('blog.index') }}" class="hover:text-red-500">Blog</a></li>
-            <li><a href="{{ route('map') }}" class="hover:text-red-500">Map</a></li>
-            <li><a href="{{ route('contact') }}" class="hover:text-red-500">Contact</a></li>
-        </ul>
-    </div>
+<nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+    <a href="{{ url('/') }}" class="text-2xl font-bold text-red-600">Tourism Panama</a>
+    <ul class="flex space-x-6">
+        <li><a href="{{ url('/') }}" class="text-gray-800 hover:text-red-500 font-semibold">Home</a></li>
+        <li><a href="{{ route('destinations') }}" class="text-gray-800 hover:text-red-500 font-semibold">Destinations</a></li>
+        <li><a href="{{ route('blog.index') }}" class="text-gray-800 hover:text-red-500 font-semibold">Blog</a></li>
+        <li><a href="{{ route('contact') }}" class="text-gray-800 hover:text-red-500 font-semibold">Contact</a></li>
+        <li><a href="{{ route('map') }}" class="hover:text-red-600">Map</a></li>
+
+    </ul>
 </nav>

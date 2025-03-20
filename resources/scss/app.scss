@@ -1,71 +1,45 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
 /* General Styles */
 body {
-    font-family: "Lato", sans-serif;
+    font-family: 'Lato', sans-serif;
     background-color: #f8f9fa;
     color: #333;
 }
 
 /* Navbar */
-.navbar {
-    background: #ffffff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+nav {
+    background-color: white;
     padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #ff6f61;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-}
-
-.nav-links li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
-}
-
-.nav-links li a:hover {
-    color: #ff6f61;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Hero Section */
 .hero {
-    background: url('/images/panama1.jpg') no-repeat center center/cover;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
     position: relative;
 }
 
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
 .hero h1 {
-    font-size: 4rem;
+    position: relative;
+    font-size: 3.5rem;
+    color: white;
+    text-align: center;
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
 }
 
-/* Grid Section */
+/* Destination Grid */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    width: 80%;
+    gap: 1.5rem;
     margin: 2rem auto;
 }
 
@@ -79,21 +53,4 @@ body {
 
 .grid-item:hover {
     transform: scale(1.05);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-
-    .grid-container {
-        width: 90%;
-    }
 }

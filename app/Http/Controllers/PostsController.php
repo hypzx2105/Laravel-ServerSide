@@ -16,6 +16,7 @@ class PostsController extends Controller
         $posts = Post::orderBy('updated_at', 'DESC')->get();
         return view('blog.index', compact('posts'));
     }
+    
 
     /**
      * Show form to create a new tourism post.
@@ -95,6 +96,8 @@ class PostsController extends Controller
 
         return redirect('/blog')->with('message', 'Destination updated successfully!');
     }
+
+
 
     /**
      * Delete a tourism destination.

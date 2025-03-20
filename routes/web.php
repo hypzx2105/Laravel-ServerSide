@@ -18,7 +18,7 @@ Route::get('/', [PagesController::class, 'home'])->name('home');
 
 // Blog Routes
 Route::get('/blog', [PostsController::class, 'index'])->name('blog.index'); // Show all posts
-Route::get('/blog/{id}', [PostsController::class, 'show'])->name('blog.show'); // Show a single post
+Route::get('/blog/{slug}', [PostsController::class, 'show'])->name('blog.show'); // Show a single post
 
 // Destinations Page
 Route::get('/destinations', [PagesController::class, 'destinations'])->name('destinations');
@@ -26,5 +26,6 @@ Route::get('/destinations', [PagesController::class, 'destinations'])->name('des
 // Contact Page
 Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
 
-// Google Maps Feature
+// Google Maps Page
 Route::get('/map', [PagesController::class, 'map'])->name('map');
+

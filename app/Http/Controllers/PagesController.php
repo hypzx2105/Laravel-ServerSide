@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post; // Import Post model
 
 class PagesController extends Controller
 {
-    // Home Page
+    // Home Page - Now includes latest posts
     public function home()
     {
-        return view('layouts.home');
+        $posts = Post::orderBy('created_at', 'desc')->take(3)->get(); // Fetch 3 latest posts
+        return view('layouts.home', compact('posts'));
     }
 
     // Destinations Page
