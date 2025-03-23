@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const destinationId = this.getAttribute("data-id");
             const buttonEl = this;
 
-            fetch("/toggle-favorite", {
+            fetch("/favorites/toggle", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -16,14 +16,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify({ destination_id: destinationId })
             })
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw new Error("Network error");
+                return res.json();
+            })
             .then(data => {
-                if (data.success) {
-                    const isFavorite = data.favorites.includes(parseInt(destinationId));
-                    buttonEl.textContent = isFavorite ? "Remove from Favorites" : "Add to Favorites";
+                if (data.status === "added") {
+                    buttonEl.textContent = "Remove from Favorites";
+                    buttonEl.classList.remove("bg-gray-200", "hover:bg-gray-300", "text-gray-800");
+                    buttonEl.classList.add("bg-red-500", "hover:bg-red-600", "text-white");
+                } else if (data.status === "removed") {
+                    buttonEl.textContent = "Add to Favorites";
+                    buttonEl.classList.remove("bg-red-500", "hover:bg-red-600", "text-white");
+                    buttonEl.classList.add("bg-gray-200", "hover:bg-gray-300", "text-gray-800");
                 }
             })
-            .catch(err => console.error("Error toggling favorite:", err));
+            .catch(err => console.error("❌ Error toggling favorite:", err));
         });
     });
 });

@@ -20,11 +20,13 @@
         <a href="{{ route('destinations.show', $destination->slug) }}" class="text-red-600 mt-2 inline-block">Learn More →</a>
 
         <button 
-            class="favorite-btn mt-4 block bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-1 rounded" 
-            data-id="{{ $destination->id }}"
-        >
-            {{ in_array($destination->id, session('favorites', [])) ? 'Remove from Favorites' : 'Add to Favorites' }}
-        </button>
+    class="favorite-btn mt-4 block bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-1 rounded transition"
+    data-id="{{ $destination->id }}"
+>
+    {{ in_array($destination->id, session('favorites', [])) ? 'Remove from Favorites' : 'Add to Favorites' }}
+</button>
+
+
     </div>
 @endforeach
 

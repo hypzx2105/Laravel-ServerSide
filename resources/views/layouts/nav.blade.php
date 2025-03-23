@@ -20,13 +20,6 @@
 
     
 
-        <!-- Language Toggle -->
-        <div class="relative">
-            <i class="fas fa-globe text-gray-500 absolute left-3 top-2.5"></i>
-            <select id="languageSwitcher" class="border rounded-full pl-8 pr-4 py-1 bg-white text-gray-700">
-                <option value="en">English</option>
-                <option value="es">Español</option>
-            </select>
-        </div>
+        
     </div>
 </nav>

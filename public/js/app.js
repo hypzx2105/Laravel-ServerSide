@@ -1,16 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./resources/css/app.css":
-/*!*******************************!*\
-  !*** ./resources/css/app.css ***!
-  \*******************************/
-/***/ (() => {
-
-throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: expected \"{\".\n  ╷\n1 │ import api from \"!../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\";\n  │                                                                                            ^\n  ╵\n  resources\\css\\app.css 1:92  root stylesheet\n    at processResult (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\webpack\\lib\\NormalModule.js:891:19)\n    at C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\webpack\\lib\\NormalModule.js:1037:5\n    at C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\loader-runner\\lib\\LoaderRunner.js:400:11\n    at C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\loader-runner\\lib\\LoaderRunner.js:252:18\n    at context.callback (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass-loader\\dist\\index.js:49:7\n    at Function.call$2 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:127083:16)\n    at render_closure1.call$2 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:108227:12)\n    at _RootZone.runBinary$3$3 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:39769:18)\n    at _FutureListener.handleError$1 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:38257:21)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:38600:49)\n    at Object._Future__propagateToListeners (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:5261:77)\n    at _Future._completeError$2 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:38433:9)\n    at _AsyncAwaitCompleter.completeError$2 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:38027:12)\n    at Object._asyncRethrow (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:5028:17)\n    at C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:28615:20\n    at _wrapJsFunctionForAsync_closure.$protected (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:5053:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:38046:12)\n    at _awaitOnObject_closure0.call$2 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:38040:25)\n    at _RootZone.runBinary$3$3 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:39769:18)\n    at _FutureListener.handleError$1 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:38257:21)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:38600:49)\n    at Object._Future__propagateToListeners (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:5261:77)\n    at _Future._completeError$2 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:38433:9)\n    at _Future__asyncCompleteError_closure.call$0 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:38512:18)\n    at Object._microtaskLoop (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:5317:24)\n    at StaticClosure._startMicrotaskLoop (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:5323:11)\n    at _AsyncRun__scheduleImmediateJsOverride_internalCallback.call$0 (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\sass\\sass.dart.js:37947:21)\n    at process.processImmediate (node:internal/timers:491:21)");
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -24,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("click", function () {
       var destinationId = this.getAttribute("data-id");
       var buttonEl = this;
-      fetch("/toggle-favorite", {
+      fetch("/favorites/toggle", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,18 +24,34 @@ document.addEventListener("DOMContentLoaded", function () {
           destination_id: destinationId
         })
       }).then(function (res) {
+        if (!res.ok) throw new Error("Network error");
         return res.json();
       }).then(function (data) {
-        if (data.success) {
-          var isFavorite = data.favorites.includes(parseInt(destinationId));
-          buttonEl.textContent = isFavorite ? "Remove from Favorites" : "Add to Favorites";
+        if (data.status === "added") {
+          buttonEl.textContent = "Remove from Favorites";
+          buttonEl.classList.remove("bg-gray-200", "hover:bg-gray-300", "text-gray-800");
+          buttonEl.classList.add("bg-red-500", "hover:bg-red-600", "text-white");
+        } else if (data.status === "removed") {
+          buttonEl.textContent = "Add to Favorites";
+          buttonEl.classList.remove("bg-red-500", "hover:bg-red-600", "text-white");
+          buttonEl.classList.add("bg-gray-200", "hover:bg-gray-300", "text-gray-800");
         }
       })["catch"](function (err) {
-        return console.error("Error toggling favorite:", err);
+        return console.error("❌ Error toggling favorite:", err);
       });
     });
   });
 });
+
+/***/ }),
+
+/***/ "./resources/scss/app.scss":
+/*!*********************************!*\
+  !*** ./resources/scss/app.scss ***!
+  \*********************************/
+/***/ (() => {
+
+throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nError: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.\n    at Oe (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\tailwindcss\\dist\\lib.js:33:1925)\n    at LazyResult.runOnRoot (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\postcss\\lib\\lazy-result.js:361:16)\n    at LazyResult.runAsync (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\postcss\\lib\\lazy-result.js:290:26)\n    at async Object.loader (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\postcss-loader\\dist\\index.js:97:14)\n    at processResult (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\webpack\\lib\\NormalModule.js:891:19)\n    at C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\webpack\\lib\\NormalModule.js:1037:5\n    at C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\loader-runner\\lib\\LoaderRunner.js:400:11\n    at C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\loader-runner\\lib\\LoaderRunner.js:252:18\n    at context.callback (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at Object.loader (C:\\Users\\elias\\ServerSide Projects\\Laravel-ServerSide\\node_modules\\postcss-loader\\dist\\index.js:142:7)");
 
 /***/ })
 
@@ -57,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
 /******/ 	__webpack_modules__["./resources/js/app.js"]();
 /******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./resources/css/app.css"]();
+/******/ 	__webpack_modules__["./resources/scss/app.scss"]();
 /******/ 	
 /******/ })()
 ;
