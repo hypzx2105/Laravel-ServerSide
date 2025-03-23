@@ -10,19 +10,24 @@ class FavoritesController extends Controller
     
     public function toggleFavorite(Request $request)
 {
-    $destinationId = $request->destination_id;
-    $user = auth()->user();
+    $destinationId = intval($request->destination_id);
+    $favorites = session('favorites', []);
 
-    
-    $favorite = $user->favorites()->where('destination_id', $destinationId)->first();
+    if (in_array($destinationId, $favorites)) {
+        // Remove
+        $favorites = array_values(array_diff($favorites, [$destinationId]));
+        session(['favorites' => $favorites]);
 
-    if ($favorite) {
-        $favorite->delete(); 
         return response()->json(['status' => 'removed']);
     } else {
-        return response()->json(['status' => 'error']);
+        // Add
+        $favorites[] = $destinationId;
+        session(['favorites' => array_unique($favorites)]);
+
+        return response()->json(['status' => 'added']);
     }
 }
+
 
 
 

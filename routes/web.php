@@ -33,7 +33,9 @@ Route::get('/map', [PagesController::class, 'map'])->name('map');
 // ========================
 //  FAVORITES ROUTES
 // ========================
-Route::post('/toggle-favorite', [FavoritesController::class, 'toggleFavorite'])->name('toggle.favorite');
+
+
+Route::post('/favorites/toggle', [FavoritesController::class, 'toggleFavorite'])->name('favorites.toggle');
 Route::get('/favorites', [FavoritesController::class, 'showFavorites'])->name('favorites.index');
 Route::post('/favorites/remove', [FavoritesController::class, 'remove'])->name('favorites.remove');
 

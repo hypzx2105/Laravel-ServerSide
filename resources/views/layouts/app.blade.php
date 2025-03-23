@@ -39,27 +39,8 @@
 
                 {{-- Icons --}}
                 <div class="flex space-x-4 items-center">
-                    {{-- Search Bar --}}
-                    <div class="relative">
-                        <input type="text" id="searchInput" placeholder="Search..." class="px-4 py-2 border rounded-full w-40">
-                        <button class="absolute right-3 top-2 text-gray-500">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-
-                    {{-- Favorites Page Link --}}
-                    <a href="{{ route('favorites.index') }}" class="text-gray-500 hover:text-red-600 text-xl">
-                        <i class="fas fa-heart"></i>
-                    </a>
-
-                    {{-- Language Switcher --}}
-                    <div class="relative">
-                        <i class="fas fa-globe text-gray-500 absolute left-3 top-2.5"></i>
-                        <select id="languageSwitcher" class="border rounded-full pl-8 pr-4 py-1 bg-white text-gray-700">
-                            <option value="en">English</option>
-                            <option value="es">Español</option>
-                        </select>
-                    </div>
+                    
+                    
                 </div>
             </div>
         </div>
