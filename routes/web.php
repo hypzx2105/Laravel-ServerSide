@@ -10,13 +10,17 @@ use App\Http\Controllers\FavoritesController;
 // ========================
 //  HOMEPAGE
 // ========================
-Route::get('/', [HomeController::class, 'index'])->name('home');  // ✅ Keep only this one
+Route::get('/', [HomeController::class, 'index'])->name('home');  
 
-// ========================
-//  BLOG ROUTES
-// ========================
-Route::get('/blog', [PostsController::class, 'index'])->name('blog.index'); // Show all posts
-Route::get('/blog/{slug}', [PostsController::class, 'show'])->name('blog.show'); // Show single post
+// BLOG ROUTES
+Route::get('/blog', [PostsController::class, 'index'])->name('blog.index');
+Route::get('/blog/create', [PostsController::class, 'create'])->name('blog.create');
+Route::post('/blog', [PostsController::class, 'store'])->name('blog.store');
+Route::get('/blog/{slug}', [PostsController::class, 'show'])->name('blog.show');
+Route::get('/blog/{slug}/edit', [PostsController::class, 'edit'])->name('blog.edit');
+Route::put('/blog/{slug}', [PostsController::class, 'update'])->name('blog.update');
+Route::delete('/blog/{slug}', [PostsController::class, 'destroy'])->name('blog.destroy');
+
 
 // ========================
 //  DESTINATIONS

@@ -21,6 +21,12 @@
             <input type="file" name="image" class="w-full p-2 border rounded" required>
         </div>
 
+        <div class="mb-4">
+            <label class="block font-bold">Google Maps URL:</label>
+            <input type="url" name="google_maps_url" class="w-full p-2 border rounded" required>
+        </div>
+        
+
         <button type="submit" class="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Add Destination</button>
     </form>
 </div>

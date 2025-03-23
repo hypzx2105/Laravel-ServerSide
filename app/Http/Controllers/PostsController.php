@@ -9,18 +9,16 @@ use Illuminate\Support\Str;
 class PostsController extends Controller
 {
     /**
-     * Display all tourism destinations.
+     * Display all tourism posts.
      */
     public function index()
-{
-    $posts = Post::latest()->paginate(6); // Fetch latest posts, 6 per page
-    return view('blog.index', compact('posts'));
-}
-
-
+    {
+        $posts = Post::latest()->paginate(6); // 6 per page
+        return view('blog.index', compact('posts'));
+    }
 
     /**
-     * Show form to create a new tourism post.
+     * Show form to create a new post.
      */
     public function create()
     {
@@ -28,62 +26,67 @@ class PostsController extends Controller
     }
 
     /**
-     * Store a newly created tourism post.
+     * Store a new tourism post.
      */
     public function store(Request $request)
     {
         $request->validate([
-            'title'       => 'required|max:255',
-            'description' => 'required',
-            'image'       => 'nullable|image|mimes:jpg,png,jpeg|max:5048',
+            'title'            => 'required|max:255',
+            'description'      => 'required',
+            'google_maps_url'  => 'nullable|url',
+            'image'            => 'nullable|image|mimes:jpg,png,jpeg|max:5048',
         ]);
 
+        $slug = Str::slug($request->title);
         $newImageName = null;
 
         if ($request->hasFile('image')) {
-            $newImageName = time() . '-' . Str::slug($request->title) . '.' . $request->image->extension();
+            $newImageName = time() . '-' . $slug . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $newImageName);
         }
 
         Post::create([
-            'title'       => $request->input('title'),
-            'description' => $request->input('description'),
-            'image_path'  => $newImageName
+            'title'            => $request->title,
+            'slug'             => $slug,
+            'description'      => $request->description,
+            'image_path'       => $newImageName,
+            'google_maps_url'  => $request->google_maps_url
         ]);
 
-        return redirect('/blog')->with('message', 'New destination added successfully!');
+        return redirect()->route('blog.index')->with('message', 'New destination added successfully!');
     }
 
     /**
-     * Display a single tourism destination.
+     * Show a single post.
      */
-    public function show($id)
+    public function show($slug)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::where('slug', $slug)->firstOrFail();
         return view('blog.show', compact('post'));
     }
 
     /**
-     * Show form to edit an existing tourism destination.
+     * Show the form to edit a post.
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::where('slug', $slug)->firstOrFail();
         return view('blog.edit', compact('post'));
     }
 
     /**
-     * Update an existing tourism destination.
+     * Update an existing post.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $request->validate([
-            'title'       => 'required|max:255',
-            'description' => 'required',
-            'image'       => 'nullable|image|mimes:jpg,png,jpeg|max:5048',
+            'title'            => 'required|max:255',
+            'description'      => 'required',
+            'google_maps_url'  => 'nullable|url',
+            'image'            => 'nullable|image|mimes:jpg,png,jpeg|max:5048',
         ]);
 
-        $post = Post::findOrFail($id);
+        $post = Post::where('slug', $slug)->firstOrFail();
 
         if ($request->hasFile('image')) {
             $newImageName = time() . '-' . Str::slug($request->title) . '.' . $request->image->extension();
@@ -91,23 +94,23 @@ class PostsController extends Controller
             $post->image_path = $newImageName;
         }
 
-        $post->title       = $request->input('title');
-        $post->description = $request->input('description');
+        $post->title           = $request->title;
+        $post->description     = $request->description;
+        $post->slug            = Str::slug($request->title);
+        $post->google_maps_url = $request->google_maps_url;
         $post->save();
 
-        return redirect('/blog')->with('message', 'Destination updated successfully!');
+        return redirect()->route('blog.index')->with('message', 'Destination updated successfully!');
     }
 
-
-
     /**
-     * Delete a tourism destination.
+     * Delete a post.
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::where('slug', $slug)->firstOrFail();
         $post->delete();
 
-        return redirect('/blog')->with('message', 'Destination deleted successfully!');
+        return redirect()->route('blog.index')->with('message', 'Destination deleted successfully!');
     }
 }

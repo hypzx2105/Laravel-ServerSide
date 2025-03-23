@@ -28,6 +28,12 @@
             <input type="file" name="image" class="w-full p-2 border rounded">
         </div>
 
+        <div class="mb-4">
+            <label class="block font-bold">Google Maps URL:</label>
+            <input type="url" name="google_maps_url" value="{{ $post->google_maps_url }}" class="w-full p-2 border rounded" required>
+        </div>
+        
+
         <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Update Destination</button>
     </form>
 </div>

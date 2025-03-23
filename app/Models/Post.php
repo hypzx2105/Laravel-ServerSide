@@ -15,9 +15,12 @@ class Post extends Model
     // Allow mass assignment for these fields
     protected $fillable = [
         'title',
+        'slug',
         'description',
-        'image_path'
+        'image_path',
+        'google_maps_url'
     ];
+    
 
     /**
      * Get the full URL of the image.
