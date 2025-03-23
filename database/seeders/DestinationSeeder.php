@@ -39,7 +39,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Boquete',
                 'description' => 'Located in the Chiriquí Highlands, Boquete is known for its cool climate, coffee farms, hiking trails, and the scenic Baru Volcano.',
-                'image_path' => 'panama1.jpg',
+                'image_path' => 'boquete.jpg',
                 'latitude' => 8.7802,
                 'longitude' => -82.4412,
                 'google_maps_url' => 'https://www.google.com/maps/place/Boquete',
@@ -47,7 +47,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Casco Viejo',
                 'description' => 'Casco Viejo is the historic district of Panama City. It features colonial-era architecture, charming plazas, and vibrant cafés and restaurants.',
-                'image_path' => 'panama2.jpg',
+                'image_path' => 'casco.jpg',
                 'latitude' => 8.9528,
                 'longitude' => -79.5350,
                 'google_maps_url' => 'https://www.google.com/maps/place/Casco+Viejo',
@@ -55,7 +55,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Pearl Islands',
                 'description' => 'An archipelago in the Gulf of Panama known for its luxurious resorts, clear waters, and whale watching experiences.',
-                'image_path' => 'panama3.jpg',
+                'image_path' => 'perla.jpg',
                 'latitude' => 8.4000,
                 'longitude' => -78.9000,
                 'google_maps_url' => 'https://www.google.com/maps/place/Pearl+Islands',
@@ -63,7 +63,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Taboga Island',
                 'description' => 'Also known as the Island of Flowers, Taboga offers beaches, small village charm, and views of the Panama City skyline.',
-                'image_path' => 'panama1.jpg',
+                'image_path' => 'taboga.jpg',
                 'latitude' => 8.7833,
                 'longitude' => -79.5667,
                 'google_maps_url' => 'https://www.google.com/maps/place/Taboga+Island',
@@ -71,7 +71,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'El Valle de Antón',
                 'description' => 'A town nestled in a volcanic crater, known for hot springs, waterfalls, and the famous Sunday artisan market.',
-                'image_path' => 'panama2.jpg',
+                'image_path' => 'valle.jpg',
                 'latitude' => 8.6000,
                 'longitude' => -80.1333,
                 'google_maps_url' => 'https://www.google.com/maps/place/El+Valle+de+Anton',
@@ -79,7 +79,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Coiba National Park',
                 'description' => 'A UNESCO World Heritage Site and one of the top diving spots in the world, offering rich biodiversity and marine life.',
-                'image_path' => 'panama3.jpg',
+                'image_path' => 'coiba.jpg',
                 'latitude' => 7.4500,
                 'longitude' => -81.8000,
                 'google_maps_url' => 'https://www.google.com/maps/place/Coiba+National+Park',
@@ -87,7 +87,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Santa Catalina',
                 'description' => 'A laid-back beach town, popular among surfers and divers heading to Coiba Island.',
-                'image_path' => 'panama1.jpg',
+                'image_path' => 'ST.jpg',
                 'latitude' => 7.6333,
                 'longitude' => -81.2667,
                 'google_maps_url' => 'https://www.google.com/maps/place/Santa+Catalina',
@@ -95,7 +95,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Panama City',
                 'description' => 'The capital of Panama, featuring a skyline of skyscrapers, a vibrant nightlife, and historic areas like Casco Viejo.',
-                'image_path' => 'panama2.jpg',
+                'image_path' => 'city.jpg',
                 'latitude' => 8.9824,
                 'longitude' => -79.5199,
                 'google_maps_url' => 'https://www.google.com/maps/place/Panama+City',
@@ -103,7 +103,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Metropolitan Natural Park',
                 'description' => 'An urban jungle in the heart of Panama City offering hiking trails and wildlife watching.',
-                'image_path' => 'panama3.jpg',
+                'image_path' => 'MP.jpg',
                 'latitude' => 8.9943,
                 'longitude' => -79.5413,
                 'google_maps_url' => 'https://www.google.com/maps/place/Parque+Natural+Metropolitano',
@@ -111,7 +111,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Ancon Hill',
                 'description' => 'A natural viewpoint offering panoramic views of Panama City and the Canal, often visited for hikes.',
-                'image_path' => 'panama1.jpg',
+                'image_path' => 'Ancon.jpg',
                 'latitude' => 8.9650,
                 'longitude' => -79.5403,
                 'google_maps_url' => 'https://www.google.com/maps/place/Ancon+Hill',
@@ -119,7 +119,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Portobelo',
                 'description' => 'A historic Caribbean port with Spanish fort ruins and Afro-Caribbean traditions.',
-                'image_path' => 'panama2.jpg',
+                'image_path' => 'portobelo.jpg',
                 'latitude' => 9.5533,
                 'longitude' => -79.6550,
                 'google_maps_url' => 'https://www.google.com/maps/place/Portobelo',
@@ -127,7 +127,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Isla Iguana',
                 'description' => 'A wildlife refuge with coral reefs and colonies of marine birds located in the Azuero Peninsula.',
-                'image_path' => 'panama3.jpg',
+                'image_path' => 'iguana',
                 'latitude' => 7.5000,
                 'longitude' => -80.0000,
                 'google_maps_url' => 'https://www.google.com/maps/place/Isla+Iguana',
