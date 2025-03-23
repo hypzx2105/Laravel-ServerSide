@@ -3,29 +3,37 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FavoritesController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| This file defines the routes for your Laravel application.
-|
-*/
+// ========================
+//  HOMEPAGE
+// ========================
+Route::get('/', [HomeController::class, 'index'])->name('home');  // ✅ Keep only this one
 
-// Homepage Route
-Route::get('/', [PagesController::class, 'home'])->name('home');
-
-// Blog Routes
+// ========================
+//  BLOG ROUTES
+// ========================
 Route::get('/blog', [PostsController::class, 'index'])->name('blog.index'); // Show all posts
-Route::get('/blog/{slug}', [PostsController::class, 'show'])->name('blog.show'); // Show a single post
+Route::get('/blog/{slug}', [PostsController::class, 'show'])->name('blog.show'); // Show single post
 
-// Destinations Page
-Route::get('/destinations', [PagesController::class, 'destinations'])->name('destinations');
+// ========================
+//  DESTINATIONS
+// ========================
+Route::get('/destinations', [DestinationController::class, 'index'])->name('destinations.index'); // ✅ Keep only this one
+Route::get('/destinations/{slug}', [DestinationController::class, 'show'])->name('destinations.show'); // Show a single destination
 
-// Contact Page
+// ========================
+//  CONTACT & MAP PAGES
+// ========================
 Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
-
-// Google Maps Page
 Route::get('/map', [PagesController::class, 'map'])->name('map');
+
+// ========================
+//  FAVORITES ROUTES
+// ========================
+Route::post('/toggle-favorite', [FavoritesController::class, 'toggleFavorite'])->name('toggle.favorite');
+Route::get('/favorites', [FavoritesController::class, 'showFavorites'])->name('favorites.index');
+Route::post('/favorites/remove', [FavoritesController::class, 'remove'])->name('favorites.remove');
 

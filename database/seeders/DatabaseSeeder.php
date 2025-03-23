@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Ensure the PostsTableSeeder is recognized
         $this->call([
-            PostsTableSeeder::class,
+            DestinationSeeder::class, // Ensure these exist
+            PostsTableSeeder::class
         ]);
     }
 }

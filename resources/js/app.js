@@ -1,34 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const images = [
-        "/images/panama1.jpg",
-        "/images/panama2.jpg",
-        "/images/panama3.webp",
-        "/images/panama4.jpg"
-    ];
+    console.log("✅ JavaScript Loaded!");
 
-    let currentIndex = 0;
-    const slider = document.getElementById("imageSlider");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
+    const buttons = document.querySelectorAll(".favorite-btn");
 
-    function updateSlider() {
-        slider.style.backgroundImage = `url(${images[currentIndex]})`;
-    }
+    buttons.forEach(button => {
+        button.addEventListener("click", function () {
+            const destinationId = this.getAttribute("data-id");
+            const buttonEl = this;
 
-    prevBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        updateSlider();
+            fetch("/toggle-favorite", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+                },
+                body: JSON.stringify({ destination_id: destinationId })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const isFavorite = data.favorites.includes(parseInt(destinationId));
+                    buttonEl.textContent = isFavorite ? "Remove from Favorites" : "Add to Favorites";
+                }
+            })
+            .catch(err => console.error("Error toggling favorite:", err));
+        });
     });
-
-    nextBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % images.length;
-        updateSlider();
-    });
-
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % images.length;
-        updateSlider();
-    }, 4000);
-
-    updateSlider();
 });
