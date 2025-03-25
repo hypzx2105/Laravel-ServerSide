@@ -127,7 +127,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Isla Iguana',
                 'description' => 'A wildlife refuge with coral reefs and colonies of marine birds located in the Azuero Peninsula.',
-                'image_path' => 'iguana',
+                'image_path' => 'islai.jpg',
                 'latitude' => 7.5000,
                 'longitude' => -80.0000,
                 'google_maps_url' => 'https://www.google.com/maps/place/Isla+Iguana',
@@ -135,7 +135,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Chagres National Park',
                 'description' => 'Home to the Chagres River and Lake Alajuela, this park is crucial for the Panama Canal water supply.',
-                'image_path' => 'panama1.jpg',
+                'image_path' => 'chagres.jpg',
                 'latitude' => 9.2000,
                 'longitude' => -79.5000,
                 'google_maps_url' => 'https://www.google.com/maps/place/Parque+Nacional+Chagres',
@@ -143,7 +143,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'La Yeguada Forest Reserve',
                 'description' => 'A scenic pine forest reserve in Veraguas, ideal for camping, hiking, and freshwater fishing.',
-                'image_path' => 'panama2.jpg',
+                'image_path' => '',
                 'latitude' => 8.3000,
                 'longitude' => -80.9000,
                 'google_maps_url' => 'https://www.google.com/maps/place/La+Yeguada',
@@ -151,7 +151,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Volcán Barú',
                 'description' => 'Panama’s highest point at 3,475 meters, where hikers can witness both oceans at sunrise from the summit.',
-                'image_path' => 'panama3.jpg',
+                'image_path' => 'baru.jpg',
                 'latitude' => 8.8081,
                 'longitude' => -82.5421,
                 'google_maps_url' => 'https://www.google.com/maps/place/Volcan+Baru',
@@ -159,7 +159,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Las Lajas Beach',
                 'description' => 'An endless stretch of golden sand beach in Chiriquí, popular for its gentle waves and sunsets.',
-                'image_path' => 'panama1.jpg',
+                'image_path' => 'lajas.jpg',
                 'latitude' => 8.1833,
                 'longitude' => -81.8667,
                 'google_maps_url' => 'https://www.google.com/maps/place/Las+Lajas',
@@ -167,7 +167,7 @@ class DestinationSeeder extends Seeder
             [
                 'title' => 'Gamboa Rainforest',
                 'description' => 'A lush rainforest near the Panama Canal, famous for birdwatching and the aerial tram.',
-                'image_path' => 'panama2.jpg',
+                'image_path' => 'gamboa.jpg',
                 'latitude' => 9.1192,
                 'longitude' => -79.7250,
                 'google_maps_url' => 'https://www.google.com/maps/place/Gamboa+Rainforest',
